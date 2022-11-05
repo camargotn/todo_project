@@ -1,1 +1,6 @@
-console.log('funcionou!');
+
+$(document).ready(function(){
+  
+  console.log('funcionou!');
+  
+})

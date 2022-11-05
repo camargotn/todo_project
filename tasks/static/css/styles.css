@@ -116,3 +116,18 @@ ul.messages {
 ul.messages li {
   list-style: none;
 }
+
+/* Pagination */
+
+.pagination {
+  margin-bottom: 20px;
+}
+
+.step-links {
+  position: relative;
+  margin-inline: auto;
+}
+
+.step-links .current {
+  margin-inline: 5px;
+}
