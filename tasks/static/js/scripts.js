@@ -5,6 +5,8 @@ $(document).ready(function(){
   console.log('funcionou!');
 
   var deleteBtn = $('.detele-btn');
+  var searchBtn = $('#search-btn')
+  var searchForm = $('#search-form')
 
   $(deleteBtn).on('click', function(e) {
    e.preventDefault();
@@ -18,3 +20,7 @@ $(document).ready(function(){
   });
 
 });
+
+$(searchBtn).on('click', function() {
+  searchForm.submit();
+})
