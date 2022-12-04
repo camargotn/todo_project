@@ -7,6 +7,8 @@ from django.contrib import messages
 
 from .models import Task
 
+import datetime
+
 def helloWorld(request):
   return HttpResponse('Hello World!')
 
@@ -15,6 +17,9 @@ def taskList(request):
 
   search = request.GET.get('search')
   filter = request.GET.get('filter')
+  tasksDoneRecently = Task.objects.filter(done='done', updated_at__gt=datetime.datetime.now()-datetime.timedelta(days=30)).count()
+  tasksDone = Task.objects.filter(done='done', user=request.user).count()
+  tasksDoing = Task.objects.filter(done='doing', user=request.user).count()
 
   if search:
 
@@ -35,7 +40,7 @@ def taskList(request):
 
     tasks = paginator.get_page(page)
 
-  return render(request, 'tasks/list.html', {'tasks': tasks})
+  return render(request, 'tasks/list.html', {'tasks': tasks, 'tasksrecently': tasksDoneRecently, 'tasksdone': tasksDone, 'tasksdoing': tasksDoing})
 
 @login_required
 def taskView(request, id):

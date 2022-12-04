@@ -22,6 +22,51 @@
   letter-spacing: 1px;
 }
 
+/* Dashboard */
+
+.dashboard {
+  padding: 0;
+  width: 100%;
+  display: block;
+}
+
+.dashboard h4 {
+  font-size: 20px;
+}
+
+.dashboard span {
+  font-size: 40px;
+  display: block;
+  width: 100%;
+}
+
+.dashboard-box {
+  float: left;
+  background-color: #dfdfdf;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 130px;
+  width: 32%;
+  text-align: center;
+}
+
+.dashboard-box:nth-child(2) {
+  margin-inline: 1.5%;
+}
+
+#dashboard-lastdays {
+  background-color: #3476e2;
+}
+
+#dashboard-done {
+  background-color: #13c43f;
+}
+
+#dashboard-doing {
+  background-color: #db1e47;
+}
+
 /* Botão adicionar */
 
 .add-div {
@@ -103,11 +148,11 @@
 }
 
 .fas.fa-trash {
-  color: red;
+  color: #db1e47;
 }
 
 .fas.fa-edit {
-  color: green;
+  color: #13c43f;
 }
 
 .fas.fa-check {
