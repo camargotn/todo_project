@@ -3,6 +3,8 @@ console.log('funcionou!');
 $(document).ready(function() {
   
   var deleteBtn = $('.detele-btn');
+  var searchBtn = $('#search-btn');
+  var searchForm = $('#search-form');
 
   $(deleteBtn).on('click', function(e) {
    
@@ -14,7 +16,10 @@ $(document).ready(function() {
    if(result) {
     window.location.href = delLink;
    }
-   
+
   });
 
+  $(searchBtn).click(function() {
+    searchForm.submit();
+  })
 });
