@@ -17,11 +17,11 @@ def taskList(request):
 
   if search:
 
-    tasks = Task.objects.filter(title__icontains=search).order_by("-created_at")
+    tasks = Task.objects.filter(title__icontains=search, user=request.user).order_by("-created_at")
 
   else:
 
-    tasks_list = Task.objects.all().order_by('-created_at')
+    tasks_list = Task.objects.all().order_by('-created_at').filter(user=request.user)
 
     paginator = Paginator(tasks_list, 3)
 
@@ -44,6 +44,7 @@ def newTask(request):
     if form.is_valid():
       task = form.save(commit=False)
       task.done = 'doing'
+      task.user = request.user
       task.save()
       return redirect('/')
 
@@ -77,6 +78,20 @@ def deleteTask(request, id):
   messages.info(request, 'Tarefa deletada com sucesso')
 
   return redirect('/')
+
+@login_required
+def changeStatus(request, id):
+  task = get_object_or_404(Task, pk=id)
+
+  if(task.done == 'doing'):
+    task.done = 'done'
+  else:
+    task.done = 'doing'
+
+  task.save()
+
+  return redirect('/') 
+
 
 def yourName(request, name):
   return render(request, 'tasks/yourname.html', {'name': name})
