@@ -14,10 +14,16 @@ def helloWorld(request):
 def taskList(request):
 
   search = request.GET.get('search')
+  filter = request.GET.get('filter')
 
   if search:
 
     tasks = Task.objects.filter(title__icontains=search, user=request.user).order_by("-created_at")
+
+  elif filter:
+
+    tasks = Task.objects.filter(done=filter, user=request.user).order_by("-created_at")
+
 
   else:
 
@@ -29,7 +35,7 @@ def taskList(request):
 
     tasks = paginator.get_page(page)
 
-    return render(request, 'tasks/list.html', {'tasks': tasks})
+  return render(request, 'tasks/list.html', {'tasks': tasks})
 
 @login_required
 def taskView(request, id):
